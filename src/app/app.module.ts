@@ -1,3 +1,4 @@
+import { PostService } from './service/post.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,7 @@ import { GetModuleComponent } from './http/get-module/get-module.component';
     ReactiveFormsModule,
     HttpModule,
   ],
-  providers: [],
+  providers: [PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

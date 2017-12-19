@@ -1,3 +1,4 @@
+import { PostService } from './../../service/post.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpModule,Http } from '@angular/http';
 
@@ -7,21 +8,23 @@ import { HttpModule,Http } from '@angular/http';
   styleUrls: ['./get-module.component.css']
 })
 export class GetModuleComponent implements OnInit {
+  
+
+  data:any[];
+
+  
+  constructor(private httpService:PostService) {
+     
+  }
+
   ngOnInit(): void {
-    this.httpService.get('https://jsonplaceholder.typicode.com/posts')
+    this.httpService.getPosts()
       .subscribe( res =>
       this.data= res.json());
   }
 
-  data:any[];
-
-  url = 'https://jsonplaceholder.typicode.com/posts';
-  constructor(private httpService:Http) {
-     
-  }
-
   deletePost(post) {
-    this.httpService.delete(this.url+'/'+post.id)
+    this.httpService.deletePost(post)
       .subscribe(res => {
         let index = this.data.indexOf(post);
         this.data.splice(index,1);
@@ -31,14 +34,10 @@ export class GetModuleComponent implements OnInit {
 
   updatePost(postId) 
   {
-    this.httpService.patch(this.url+'/'+postId, JSON.stringify({isRead : true}))
+    this.httpService.updatePost(postId, {isRead : true})
       .subscribe( res => {
         console.log(res.json());
       });
-  }
-
-  getJsonData(){
-      
   }
 }
 
