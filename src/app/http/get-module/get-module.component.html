@@ -1,0 +1,12 @@
+<br/>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let d of data">
+    {{ d.title }}
+  <button class="btn btn-default btn-sm"
+  (click) = "updatePost(d.id)">
+  Update</button>
+  <button class="btn btn-danger btn-sm"
+  (click) = "deletePost(d)">
+  delete</button>
+  </li>
+</ul>
